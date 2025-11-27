@@ -29,6 +29,7 @@
     ?>
     <div class="container">
         <h1 class="text-warning">Ajouter un produit</h1>
+        <h2 class="text-success">On utilise la super globale $_POST['attribut name du formulaire']</h2>
         <form action="" method="POST">
         <div class="mt-3">
             <input type="text" name="nom_produit" placeholder="Nom du produit" class="form-control">
