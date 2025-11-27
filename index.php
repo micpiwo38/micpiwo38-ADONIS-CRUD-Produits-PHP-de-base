@@ -14,6 +14,7 @@
     <div class="container">
         <h1 class="text-info">Gestion de vos produits :</h1>
         <h2 class="text-warning">Un CRUD Basic de produits PHP</h2>
+        <p>Ceci est sur la banche user_login></p>
         <a href="ajouter_produit.php" class="btn btn-success">Ajouter un produit</a>
                 <br><br>
 <?php
