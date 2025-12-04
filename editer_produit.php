@@ -11,6 +11,11 @@
     <title>Afficher les produits</title>
 </head>
 <body>
+    <header>
+        <nav>
+            <?php require_once "navbar.php" ?>
+        </nav>
+    </header>
     <div class="container">
         <h1 class="text-danger">Editer un produit</h1>
     </div>

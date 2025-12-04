@@ -7,6 +7,11 @@
     <title>Connexion</title>
 </head>
 <body>
+    <header>
+        <nav>
+            <?php require_once "navbar.php" ?>
+        </nav>
+    </header>
     <?php
     // 1. Démarrer la session pour enregistrer l'utilisateur
     session_start();

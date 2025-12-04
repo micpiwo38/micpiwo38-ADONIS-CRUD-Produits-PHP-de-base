@@ -7,6 +7,11 @@
     <title>Inscription</title>
 </head>
 <body>
+    <header>
+        <nav>
+            <?php require_once "navbar.php" ?>
+        </nav>
+    </header>
     <?php
     // Inclure la connexion a la base de données
     require_once "db_connexion.php";
@@ -21,9 +26,15 @@
         // 1. Récupération et nettoyage des données du formulaire
         // On utilise trim() pour supprimer les espaces inutiles autour
         $email = trim($_POST['email']);
-        $password = $_POST['password'];
+        $password = trim($_POST['password']);
         $password_repeat = $_POST['password_repeat'];
-        
+        // Regex exigeant :
+        // - Au moins un caractère majuscule (?=.*?[A-Z])
+        // - Au moins un caractère minuscule (?=.*?[a-z])
+        // - Au moins un chiffre (?=.*?[0-9])
+        // - Au moins un caractère spécial (?=.*?[#?!@$%^&*-])
+        // - Minimum 8 caractères au total (.{8,}$)
+        $password_regex = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/";
         // Valeur par défaut pour le rôle, correspondant à la colonne 'role_user' INT
         $default_role = 1; 
 
@@ -36,7 +47,9 @@
             $error = "Les mots de passe ne correspondent pas.";
         } elseif (strlen($password) < 6) {
              $error = "Le mot de passe doit contenir au moins 6 caractères.";
-        } else {
+        }elseif(!preg_match($password_regex, $password)){
+            $error = "Le mot de passe doit contenir au moins 8 caractères, dont une majuscule, une minuscule, un chiffre et un caractère spécial.";
+        }else {
             // 3. Vérification de l'existence de l'email
             try {
                 // Requête préparée pour éviter les injections SQL
